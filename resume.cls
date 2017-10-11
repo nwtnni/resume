@@ -9,6 +9,15 @@
 % Inherit from article
 \LoadClass{article}
 
+% Prerequisites
+\RequirePackage{enumitem}
+\RequirePackage{fontspec}
+\RequirePackage{fancyhdr}
+\RequirePackage{setspace}
+
+% Margins
+\RequirePackage[left=1in, right=1in, top=1.2in, bottom=1.2in, headheight=80pt, headsep=15pt]{geometry}
+
 % Required
 \renewcommand{\normalsize}{\fontsize{11pt}{12pt}\selectfont}
 \setlength{\textwidth}{6.5in}
@@ -16,43 +25,60 @@
 \pagenumbering{gobble}
 
 % Font loading
-\RequirePackage{fontspec}
 \DeclareOption{monospace}{\setmainfont{Inconsolata}}
 \DeclareOption{regular}{\setmainfont{Open Sans}}
 \ProcessOptions
 
-% Margins
-\RequirePackage[left=1in, right=1in, top=1.2in, bottom=1.2in, headheight=80pt, headsep=15pt]{geometry}
-
 % Define variables
 \def \@author{Jimbo Smith}
-\newcommand{\setauthor}[1]{\def \@author{#1}}
-
 \def \@phone{000-000-0000}
-\newcommand{\setphone}[1]{\def \@phone{#1}}
-
 \def \@email{abcdef@gmail.com}
-\newcommand{\setemail}[1]{\def \@email{#1}}
-
 \def \@site{test.com}
+
+\newcommand{\setauthor}[1]{\def \@author{#1}}
+\newcommand{\setphone}[1]{\def \@phone{#1}}
+\newcommand{\setemail}[1]{\def \@email{#1}}
 \newcommand{\setsite}[1]{\def \@site{#1}}
 
 % Make header
-\RequirePackage{fancyhdr}
-\RequirePackage{setspace}
 \fancypagestyle{default}{
     \fancyhf{}
     \chead{
         \begin{spacing}{0.75}
             \huge{\@author} 
         \end{spacing}
-        \@email
+        \large{\@email}
     }
-    \lhead{\@phone}
-    \rhead{\@site}
+    \lhead{\large{\@phone}}
+    \rhead{\large{\@site}}
     \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\footrulewidth}{0pt}
 }
-
 \AtBeginDocument{\thispagestyle{default}}
 
+% Entry with title, date, and description
+% Usage: \entry{title}{date}{description}
+\newcommand{\entry}[2]{
+    \begin{spacing}{0}
+        \textbf{\large{{#1}}} \hfill \large{#2}
+    \end{spacing}
+}
+
+% Itemized descriptions
+\renewenvironment{description}{
+    \begin{itemize}[label={-}, itemsep=0.1ex, topsep=0.2ex]
+    \small
+}{
+    \end{itemize}
+    \vspace{\baselineskip}
+}
+
+% Different environments for resume sections
+\newenvironment{education}{
+    \begin{spacing}{1.0}
+        \begin{center}
+            \textbf{\large{Education}}
+        \end{center}
+    \end{spacing}
+}{
+}
