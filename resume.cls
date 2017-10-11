@@ -17,6 +17,7 @@
 \RequirePackage{titlecaps}
 \RequirePackage{color}
 \RequirePackage{ifthen}
+\RequirePackage{hyperref}
 
 % Package options
 \Addlcwords{and}
@@ -52,10 +53,10 @@
         \begin{spacing}{0.75}
             \huge{\@author} 
         \end{spacing}
-        \@email
+        \href{mailto:\@email}{\@email}
     }
     \lhead{\@phone}
-    \rhead{\@site}
+    \rhead{\href{https://nwtnni.github.io}{\@site}}
     \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\headrule}{\hbox to\headwidth{\color{accent}\leaders\hrule width \headrulewidth\hfill}}
     \renewcommand{\footrulewidth}{0pt}
