@@ -15,19 +15,19 @@
 \RequirePackage{fancyhdr}
 \RequirePackage{setspace}
 \RequirePackage{titlecaps}
+\RequirePackage{color}
 
 % Margins
 \RequirePackage[left=1in, right=1in, top=1.2in, bottom=1.2in, headheight=80pt, headsep=15pt]{geometry}
 
-% Required
+% Minimum requirements for .cls file
 \renewcommand{\normalsize}{\fontsize{11pt}{12pt}\selectfont}
 \setlength{\textwidth}{6.5in}
 \setlength{\textheight}{8in}
 \pagenumbering{gobble}
 
 % Font loading
-\DeclareOption{monospace}{\setmainfont{Inconsolata}}
-\DeclareOption{regular}{\setmainfont{Open Sans}}
+\DeclareOption{open}{\setmainfont{Open Sans}}
 \ProcessOptions
 
 % Define variables
@@ -35,6 +35,7 @@
 \def \@phone{000-000-0000}
 \def \@email{abcdef@gmail.com}
 \def \@site{test.com}
+\definecolor{accent}{RGB}{76, 210, 255}
 
 \newcommand{\setauthor}[1]{\def \@author{#1}}
 \newcommand{\setphone}[1]{\def \@phone{#1}}
@@ -48,10 +49,12 @@
         \begin{spacing}{0.75}
             \huge{\@author} 
         \end{spacing}
-        \large{\@email}
+        \@email
     }
-    \lhead{\large{\@phone}}
-    \rhead{\large{\@site}}
+    \lhead{\@phone}
+    \rhead{\@site}
+    \renewcommand{\headrulewidth}{1pt}
+    \renewcommand{\headrule}{\hbox to\headwidth{\color{accent}\leaders\hrule width \headrulewidth\hfill}}
     \renewcommand{\footrulewidth}{0pt}
 }
 \AtBeginDocument{\thispagestyle{default}}
@@ -60,7 +63,7 @@
 % Usage: \entry{title}{date}{description}
 \newcommand{\entry}[2]{
     \begin{spacing}{0}
-        \textbf{\large{{#1}}} \hfill \large{#2}
+        \textbf{#1} \hfill #2
     \end{spacing}
 }
 
@@ -82,7 +85,7 @@
             \end{center}
         \end{spacing}
     }{
-        \hrule
+        \color{accent}\hrule
     }
 }
 
