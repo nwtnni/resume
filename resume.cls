@@ -14,6 +14,7 @@
 \RequirePackage{fontspec}
 \RequirePackage{fancyhdr}
 \RequirePackage{setspace}
+\RequirePackage{titlecaps}
 
 % Margins
 \RequirePackage[left=1in, right=1in, top=1.2in, bottom=1.2in, headheight=80pt, headsep=15pt]{geometry}
@@ -51,7 +52,6 @@
     }
     \lhead{\large{\@phone}}
     \rhead{\large{\@site}}
-    \renewcommand{\headrulewidth}{1pt}
     \renewcommand{\footrulewidth}{0pt}
 }
 \AtBeginDocument{\thispagestyle{default}}
@@ -73,12 +73,21 @@
     \vspace{\baselineskip}
 }
 
-% Different environments for resume sections
-\newenvironment{education}{
-    \begin{spacing}{1.0}
-        \begin{center}
-            \textbf{\large{Education}}
-        \end{center}
-    \end{spacing}
-}{
+% Automate setting up similar environments
+\newcommand{\@makeenvironment}[1] {
+    \newenvironment{#1}{
+        \begin{spacing}{1.0}
+            \begin{center}
+                \textbf{\large{\titlecap{#1}}}
+            \end{center}
+        \end{spacing}
+    }{
+        \hrule
+    }
 }
+
+% Set up different environments
+\@makeenvironment{education}
+\@makeenvironment{work}
+\@makeenvironment{projects}
+\@makeenvironment{skills}
