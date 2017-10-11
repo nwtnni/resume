@@ -16,26 +16,29 @@
 \RequirePackage{setspace}
 \RequirePackage{titlecaps}
 \RequirePackage{color}
+\RequirePackage{ifthen}
+
+% Package options
+\Addlcwords{and}
+\definecolor{accent}{RGB}{15, 160, 206}
 
 % Margins
-\RequirePackage[left=1in, right=1in, top=1.2in, bottom=1.2in, headheight=80pt, headsep=15pt]{geometry}
+\RequirePackage[left=1in, right=1in, top=1.25in, bottom=0in, headheight=50pt, headsep=5pt]{geometry}
 
 % Minimum requirements for .cls file
-\renewcommand{\normalsize}{\fontsize{11pt}{12pt}\selectfont}
+\renewcommand{\normalsize}{\fontsize{11pt}{11pt}\selectfont}
 \setlength{\textwidth}{6.5in}
-\setlength{\textheight}{8in}
+\setlength{\textheight}{9in}
 \pagenumbering{gobble}
 
 % Font loading
-\DeclareOption{open}{\setmainfont{Open Sans}}
-\ProcessOptions
+\setmainfont{Raleway}
 
 % Define variables
 \def \@author{Jimbo Smith}
 \def \@phone{000-000-0000}
 \def \@email{abcdef@gmail.com}
 \def \@site{test.com}
-\definecolor{accent}{RGB}{76, 210, 255}
 
 \newcommand{\setauthor}[1]{\def \@author{#1}}
 \newcommand{\setphone}[1]{\def \@phone{#1}}
@@ -59,11 +62,19 @@
 }
 \AtBeginDocument{\thispagestyle{default}}
 
+% Utility macros
+\def \@rule{\color{accent}\hrule}
+\def \@break{\vspace{.6\baselineskip}}
+
 % Entry with title, date, and description
-% Usage: \entry{title}{date}{description}
-\newcommand{\entry}[2]{
+% Usage: \entry{title}{description}{date}
+\newcommand{\entry}[3]{
     \begin{spacing}{0}
-        \textbf{#1} \hfill #2
+        \ifthenelse{\equal{#2}{}}{
+            \textbf{#1} \hfill
+        }{
+            \textbf{#1} - #2 \hfill #3
+        }
     \end{spacing}
 }
 
@@ -73,24 +84,33 @@
     \small
 }{
     \end{itemize}
-    \vspace{\baselineskip}
+    \@break
 }
 
 % Automate setting up similar environments
 \newcommand{\@makeenvironment}[1] {
     \newenvironment{#1}{
-        \begin{spacing}{1.0}
-            \begin{center}
-                \textbf{\large{\titlecap{#1}}}
-            \end{center}
-        \end{spacing}
+        \centering
+        \textbf{\large{\titlecap{#1}}}
+        \@break
     }{
-        \color{accent}\hrule
+        \@rule
+        \@break
     }
+}
+
+% Same environment, no line break
+\newcommand{\@maketightenvironment}[1] {
+    \newenvironment{#1}{
+        \centering
+        \textbf{\large{\titlecap{#1}}}
+        \@break
+    }{}
 }
 
 % Set up different environments
 \@makeenvironment{education}
-\@makeenvironment{work}
+\@makeenvironment{research experience}
 \@makeenvironment{projects}
-\@makeenvironment{skills}
+\@makeenvironment{leadership experience}
+\@maketightenvironment{skills}
