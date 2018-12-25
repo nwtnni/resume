@@ -113,5 +113,5 @@
 \@makeenvironment{education}
 \@makeenvironment{research experience}
 \@makeenvironment{projects}
-\@makeenvironment{leadership experience}
+\@makeenvironment{work experience}
 \@maketightenvironment{skills}
