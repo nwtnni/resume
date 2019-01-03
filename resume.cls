@@ -111,7 +111,6 @@
 
 % Set up different environments
 \@makeenvironment{education}
-\@makeenvironment{research experience}
+\@makeenvironment{experience}
 \@makeenvironment{projects}
-\@makeenvironment{work experience}
 \@maketightenvironment{skills}
