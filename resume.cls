@@ -21,7 +21,7 @@
 
 % Package options
 \Addlcwords{and}
-\definecolor{accent}{RGB}{15, 160, 206}
+\definecolor{accent}{RGB}{38, 139, 210}
 
 % Margins
 \RequirePackage[left=1in, right=1in, top=1.25in, bottom=0in, headheight=50pt, headsep=5pt]{geometry}
