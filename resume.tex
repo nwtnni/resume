@@ -1,6 +1,6 @@
 \documentclass{resume}
 \setauthor{Newton Ni}
-\setphone{248--686--8887}
+\setphone{248-686-8887}
 \setemail{nwtnni@gmail.com}
 \setsite{nwtnni.me}
 
@@ -8,6 +8,12 @@
 
 \begin{document}
 \begin{education}
+    \entry{The University of Texas at Austin}{College of Natural Sciences}{August 2022 --- Current}
+    \begin{description}
+        \item PhD student advised by Emmett Witchel
+        \item Researching memory management for CXL shared memory
+    \end{description}
+
     \entry{Cornell University}{College of Engineering}{May 2019}
     \begin{description}
         \item B.S. in Computer Science --- 3.93 GPA
@@ -25,7 +31,7 @@
 \end{education}
 
 \begin{experience}
-    \entry{Software Engineer}{Commure}{August 2019 --- Current}
+    \entry{Software Engineer}{Commure}{August 2019 --- March 2022}
     \begin{description}
         \item Developed Rust procedural macro for strongly-typed metrics
         \item Implemented HL7v2 lexer with copy-on-write escape sequence support
@@ -55,11 +61,11 @@
 \end{experience}
 
 \begin{projects}
-    \entry{tigerc}{\href{https://github.com/nwtnni/tigerc}{Tiger Programming Language Compiler}}{Jun 2018 --- Aug 2018}
+    \entry{xic-rs}{\href{https://github.com/nwtnni/xic-rs}{Xi Programming Language Compiler}}{Jun 2018 --- Aug 2018}
     \begin{description}
-        \item Compiles high-level Tiger language down to x86--64 assembly using Rust
-        \item Performs type-checking, IR translation, naive register allocation, etc.
-        \item Applies macro-based metaprogramming for test boilerplate generation
+        \item Compiles object-oriented Xi language to x86-64 assembly using Rust
+        \item Implements linear scan register allocation and dataflow optimizations (e.g. partial redundancy elimination)
+        \item Establishes correctness through snapshot testing and behavior equivalence
     \end{description}
 
     \entry{paxos}{\href{https://github.com/nwtnni/paxos}{Paxos Distributed Consensus Protocol}}{Nov 2018 --- Dec 2018}
@@ -67,13 +73,6 @@
         \item Implements a generic replicated state machine library backed by Multi-Paxos
         \item Verifies correctness with a JSON DSL-based test harness and extensive logging
         \item Includes an example chatroom state machine with runnable server and client
-    \end{description}
-
-    \entry{gnocchi}{\href{https://github.com/nwtnni/gnocchi}{Basic Procedurally Generated World}}{Nov 2018 --- Dec 2018}
-    \begin{description}
-        \item Renders with fog of war and directional shading using JavaScript and WebGL
-        \item Supports multiple concurrent players using a client-server architecture
-        \item Optimizes performance with chunking, bitflags, and occlusion culling
     \end{description}
 \end{projects}
 
